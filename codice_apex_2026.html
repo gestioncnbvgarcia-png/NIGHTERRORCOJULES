@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CÓDICE APEX 2026 | Guía Maestra de Nivel Industrial: Producción Cinematográfica de Terror mediante IA</title>
+    <style>
+        :root {
+            --gold-primary: #d4af37;
+            --gold-light: #f9e29d;
+            --gold-dark: #8a6f1e;
+            --industrial-dark: #121212;
+            --bg-deep: #08080a;
+            --bg-surface: rgba(22, 22, 26, 0.75);
+            --bg-surface-border: rgba(212, 175, 55, 0.2);
+            --bg-card: rgba(18, 18, 18, 0.85);
+            --text-main: #e6e6e6;
+            --text-muted: #8e8e93;
+            --crimson-isolation: #6b1111;
+            --crimson-accent: #ff2a2a;
+            --cyan-accent: #00f0ff;
+            --green-glow: #00ff88;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --glass-blur: blur(20px);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                linear-gradient(rgba(18, 18, 18, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(18, 18, 18, 0.5) 1px, transparent 1px);
+            background-size: 100% 100%, 32px 32px, 32px 32px;
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--industrial-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: var(--radius-sm);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-primary);
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--bg-surface-border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary), var(--crimson-isolation));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: #000;
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .brand-title {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+            text-transform: uppercase;
+        }
+
+        .brand-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 255, 136, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            color: var(--green-glow);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            letter-spacing: 1px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--green-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--green-glow);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.4; transform: scale(0.9); }
+        }
+
+        /* MAIN APP LAYOUT */
+        main.app-container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 1.5rem;
+            padding: 1.5rem 2rem;
+            max-width: 1920px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        @media (max-width: 1200px) {
+            main.app-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .glass-panel {
+            background: var(--bg-surface);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--bg-surface-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 0.85rem;
+        }
+
+        .panel-title {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .panel-title icon {
+            font-style: normal;
+        }
+
+        /* MODULE 1: 6D PROMPT ENGINE GRID */
+        .engine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .dimension-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            padding: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            transition: var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dimension-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gold-primary);
+            opacity: 0.6;
+        }
+
+        .dimension-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .dimension-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dimension-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.1);
+            padding: 0.15rem 0.5rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dimension-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .form-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-label-val {
+            color: var(--gold-light);
+        }
+
+        input[type="text"], select, textarea {
+            width: 100%;
+            background: rgba(10, 10, 12, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 0.6rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            outline: none;
+            transition: var(--transition-fast);
+        }
+
+        input[type="text"]:focus, select:focus, textarea:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            background: rgba(15, 15, 18, 0.95);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .range-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--gold-primary);
+            cursor: pointer;
+            box-shadow: 0 0 8px var(--gold-primary);
+            transition: transform 0.1s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .color-picker-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            background: transparent;
+        }
+
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-sm);
+        }
+
+        /* MODULE 2: LEXICAL SAFETY SHIELD TOGGLE */
+        .shield-bar {
+            background: rgba(10, 10, 12, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .shield-info {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .shield-icon {
+            font-size: 1.2rem;
+            color: var(--gold-primary);
+        }
+
+        .shield-text-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+        }
+
+        .shield-text-desc {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        /* TOGGLE SWITCH */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: .3s;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--text-muted);
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: rgba(212, 175, 55, 0.25);
+            border-color: var(--gold-primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+            background-color: var(--gold-primary);
+            box-shadow: 0 0 10px var(--gold-primary);
+        }
+
+        .shield-stats {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--cyan-accent);
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 0.25rem 0.6rem;
+            border-radius: var(--radius-sm);
+        }
+
+        /* MODULE 3: NEGATIVE PROMPT INJECTOR */
+        .negative-box {
+            background: rgba(10, 10, 12, 0.95);
+            border: 1px solid rgba(255, 42, 42, 0.3);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .negative-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .negative-title {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--crimson-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .negative-lock-tag {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--crimson-accent);
+            background: rgba(255, 42, 42, 0.1);
+            border: 1px solid rgba(255, 42, 42, 0.3);
+            padding: 0.15rem 0.4rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .negative-static {
+            background: rgba(255, 42, 42, 0.05);
+            border: 1px dashed rgba(255, 42, 42, 0.2);
+            padding: 0.6rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #d17d7d;
+            word-break: break-all;
+        }
+
+        /* SIDEBAR / UTILITIES RIGHT COLUMN */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* MODULE 4: 8K TILING & BLACKWELL CALCULATOR */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .calc-card {
+            background: rgba(10, 10, 12, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .calc-value {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold-light);
+        }
+
+        .calc-label {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* MODULE 5: OUTPUT PREVIEW & ACTION BUTTONS */
+        .output-box {
+            background: #050507;
+            border: 1px solid var(--gold-primary);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+            position: relative;
+        }
+
+        .output-label {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .output-text {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            line-height: 1.5;
+            color: #f0f0f0;
+            background: rgba(15, 15, 20, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.85rem;
+            border-radius: var(--radius-sm);
+            max-height: 220px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        /* SHIMMER BUTTONS */
+        .btn-shimmer {
+            position: relative;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary), var(--gold-light));
+            background-size: 200% 200%;
+            animation: gold-shimmer 4s ease infinite;
+            color: #000;
+            font-family: var(--font-mono);
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.85rem 1.25rem;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        @keyframes gold-shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .btn-shimmer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-shimmer:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            padding: 0.6rem 1rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold-primary);
+            color: var(--gold-light);
+        }
+
+        .btn-group-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+        }
+
+        /* SESSION HISTORY TABLE */
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            background: rgba(10, 10, 12, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.6rem 0.75rem;
+            border-radius: var(--radius-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .history-item:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .history-title {
+            font-weight: 600;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 220px;
+        }
+
+        .history-time {
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            font-size: 0.68rem;
+        }
+
+        /* PULSE FEEDBACK ANIMATION */
+        .copy-pulse {
+            animation: pulse-border 0.6s ease-out;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.8); }
+            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        /* TOAST NOTIFICATIONS */
+        #toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-light);
+            padding: 0.85rem 1.25rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--bg-surface-border);
+            background: rgba(10, 10, 12, 0.9);
+            padding: 1rem 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .footer-specs {
+            color: var(--gold-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="brand-container">
+            <div class="brand-logo">APX</div>
+            <div>
+                <div class="brand-title">CÓDICE APEX 2026</div>
+                <div class="brand-subtitle">Guía Maestra Industrial: Producción de Terror IA</div>
+            </div>
+        </div>
+        <div class="system-status">
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                OFFLINE ENGINE READY | NVIDIA BLACKWELL FP4/FP8
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN SPA CONTAINER -->
+    <main class="app-container">
+
+        <!-- LEFT COLUMN: PROMPT ENGINE & CONFIGS -->
+        <div class="glass-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <span>⚡</span> MODULE 1 & 2: 6D APEX PROMPT ENGINE & LEXICAL SHIELD
+                </div>
+                <button class="btn-secondary" onclick="resetToApexDefaults()" style="font-size:0.7rem; padding:0.3rem 0.6rem;">
+                    ↺ Cargar Preset APEX Master
+                </button>
+            </div>
+
+            <!-- MODULE 2: SEMANTIC PERIPHRASIS / LEXICAL SHIELD -->
+            <div class="shield-bar">
+                <div class="shield-info">
+                    <span class="shield-icon">🛡️</span>
+                    <div>
+                        <div class="shield-text-title">Escudo Léxico de Perífrasis Semántica</div>
+                        <div class="shield-text-desc">Sustituye términos explícitos por metáforas cinematográficas APEX homologadas</div>
+                    </div>
+                </div>
+                <div style="display:flex; align-items:center; gap:1rem;">
+                    <div id="shield-stat-badge" class="shield-stats">0 Reemplazos Activos</div>
+                    <label class="switch">
+                        <input type="checkbox" id="shield-toggle" checked onchange="updatePromptGeneration()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- MODULE 1: 6D ENGINE CONTROLS -->
+            <div class="engine-grid">
+
+                <!-- 1D: SUBJECT & BIOLOGICAL SPECS -->
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-name">1D: Sujeto & Especificación Biológica</span>
+                        <span class="dimension-tag">1D / BIOL</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Sujeto Principal (Entidad/Anatomía)</label>
+                        <input type="text" id="dim1-subject" value="Anomalía humanoide anciana en contorsión postural extrema, figura cadavérica tallada por necrosis" oninput="saveAndRender()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Patología Epidérmica & Textura Dermica</label>
+                        <select id="dim1-epidermis" onchange="saveAndRender()">
+                            <option value="epidermis translúcida de tono porcelana gélida revelando venas cianóticas de baja profundidad">Dermis Translúcida Venosa</option>
+                            <option value="piel desecada con fisuras micro-escamosas similares a barro seco calcificado">Piel Fisurada Calcificada</option>
+                            <option value="capa cutánea vitrificada con reflejos lipídicos sutiles y queratinización irregular">Piel Vitrificada / Lipídica</option>
+                            <option value="necrosis subdérmica focalizada en extremidades con patrón de pudrición en mármol">Necrosis Focalizada Mármol</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Ojos & Anomalía Ocular</label>
+                        <input type="text" id="dim1-eyes" value="escleróticas hiper-pigmentadas en azabache con cataratas de cuarzo lechoso" oninput="saveAndRender()">
+                    </div>
+                </div>
+
+                <!-- 2D: OPTICS & SENSORS -->
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-name">2D: Óptica & Captura Sensorial</span>
+                        <span class="dimension-tag">2D / OPTX</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Cámara & Sistema Sensor</label>
+                        <select id="dim2-sensor" onchange="saveAndRender()">
+                            <option value="Phase One IQ4 150MP digital back, formato medio de resolución extrema">Phase One IQ4 150MP (Formato Medio)</option>
+                            <option value="ARRI Alexa 65 Large Format Cinema Camera con sensor Open Gate">ARRI Alexa 65 (Cine Formato Largo)</option>
+                            <option value="RED V-Raptor XL 8K VV con captura uncompressed RAW">RED V-Raptor XL 8K RAW</option>
+                            <option value="Hasselblad H6D-100c medium format sensor">Hasselblad H6D-100c</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Lente & Apertura</label>
+                        <select id="dim2-lens" onchange="saveAndRender()">
+                            <option value="Leica Noctilux-M 50mm f/0.95 ASPH, micro-contraste orgánico y compresión focal sobria">Leica Noctilux 50mm f/0.95</option>
+                            <option value="Panavision C-Series Anamorphic Prime 40mm T1.9 con distorsión barril anamórfica">Panavision Anamorphic 40mm</option>
+                            <option value="Cooke Anamorphic/i Full Frame Plus 65mm Macro">Cooke Anamorphic/i 65mm Macro</option>
+                            <option value="Carl Zeiss Ultra Prime 24mm T1.9 de gran angular dramático">Zeiss Ultra Prime 24mm</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Grano de Película & ISO Grain</label>
+                        <select id="dim2-grain" onchange="saveAndRender()">
+                            <option value="grano fino fotosensible Kodak Vision3 500T 5219 con ruido analógico orgánico">Kodak Vision3 500T (Grano Cine)</option>
+                            <option value="textura limpia ISO 100 sin ruido digital con máxima agudeza de bordes">ISO 100 Impoluto</option>
+                            <option value="grano denso ISO 3200 forzado con textura fotosensible rugosa estilo thriller 35mm">ISO 3200 Forzado (Grano Denso)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 3D: LIGHTING & FILOPONO'S RULE -->
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-name">3D: Iluminación & Regla de Filópono</span>
+                        <span class="dimension-tag">3D / LGT</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Esquema Lumínico (Claroscuro APEX)</label>
+                        <select id="dim3-lighting" onchange="saveAndRender()">
+                            <option value="Regla de Filópono: luz clave cenital rasante creando sombras penumbrosas profundas y claroscuro dramático">Claroscuro Filópono Cenital</option>
+                            <option value="iluminación lateral Rembrandt con alto ratio de contraste 8:1 y sombra de nariz proyectada">Rembrandt Clásico Contrasto High-Ratio</option>
+                            <option value="luz contra de contorno de alta intensidad con niebla volumétrica difusa y luz de relleno cero">Luz Trasera Volumétrica Cero Relleno</option>
+                            <option value="iluminación difusa de morbidez mortuoria reflejada en superficies húmedas">Iluminación Mortuoria Difusa</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Densidad de Niebla Volumétrica</label>
+                        <div class="range-container">
+                            <input type="range" id="dim3-haze" min="0" max="100" value="65" oninput="saveAndRender()">
+                            <span id="dim3-haze-val" class="form-label-val" style="font-family:var(--font-mono); font-size:0.8rem;">65%</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Dispersión Subsuperficial (Subsurface Scattering)</label>
+                        <div class="range-container">
+                            <input type="range" id="dim3-sss" min="0" max="100" value="85" oninput="saveAndRender()">
+                            <span id="dim3-sss-val" class="form-label-val" style="font-family:var(--font-mono); font-size:0.8rem;">85%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4D: CAMERA DYNAMICS & MOVEMENTS -->
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-name">4D: Encuadre & Dinámica de Cámara</span>
+                        <span class="dimension-tag">4D / CAM</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Composición & Ángulo</label>
+                        <select id="dim4-framing" onchange="saveAndRender()">
+                            <option value="plano medio corto en ángulo holandés (Dutch Angle) sutil de 12 grados, composición desbalanceada">Plano Medio + Ángulo Holandés (Dutch)</option>
+                            <option value="primerísimo primer plano (Extreme Close-Up) macro centrado simétrico perturbador">Macro ECU Centrado</option>
+                            <option value="plano contrapicado en contrapicado severo accentuando la monumentalidad opresiva">Contrapicado Severo Opresivo</option>
+                            <option value="plano general cenital (God's Eye View) aislado en espacio cavernoso">Plano Cenital Distante</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Dinámica / Movimiento Implícito</label>
+                        <select id="dim4-motion" onchange="saveAndRender()">
+                            <option value="sensación de avance lento en dolly creeping in con ligera aberración esférica de borde">Dolly Creeping Slow</option>
+                            <option value="cámara estática congelada en tensión absoluta con profundidad de campo extremadamente reducida">Estática Tensión Congelada</option>
+                            <option value="trepidación orgánica de cámara en mano estilo documental kinético de terror">Cámara en Mano Kinetica</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 5D: COLOR PALETTE & CRIMSON ISOLATION -->
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-name">5D: Paleta Cromática & Aislamiento Carmesí</span>
+                        <span class="dimension-tag">5D / COLR</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Aislamiento Carmesí APEX (#6b1111)</label>
+                        <div class="color-picker-group">
+                            <input type="color" id="dim5-crimson-picker" value="#6b1111" onchange="syncCrimsonColor(); saveAndRender();">
+                            <input type="text" id="dim5-crimson-hex" value="#6b1111" style="font-family:var(--font-mono);" oninput="syncCrimsonHex(); saveAndRender();">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Atmósfera Cromática Complementaria</label>
+                        <select id="dim5-palette" onchange="saveAndRender()">
+                            <option value="Paleta cromática dominada por cian gélido desaturado (#1a2830) con focalización de Aislamiento Carmesí (#6b1111)">Cian Gélido + Aislamiento Carmesí (#6b1111)</option>
+                            <option value="Gradación monocromática sepia de moho y humedad con acentos de bronce calcificado">Monocromo Sepia Moho / Bronce</option>
+                            <option value="Contraste de sombreado verdoso oxidado con iluminación fría de mercurio">Verde Oxidado & Mercurio</option>
+                            <option value="Paleta desaturada Bleach Bypass de alto contraste y sombras densas en azabache">Bleach Bypass Desaturado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 6D: TECHNICAL QUALITY MODIFIERS -->
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-name">6D: Modificadores Técnicos High-End</span>
+                        <span class="dimension-tag">6D / TECH</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Modificadores Físicos de Render & Motor</label>
+                        <textarea id="dim6-tech" oninput="saveAndRender()">Subsurface scattering SSS de alto nivel en micro-poros epiteliales, renderizado octánico foto-realista Octane Render, 8K RAW uncompressed master batch, aberración cromática foveal imperceptible en bordes exteriores, hiper-fidelidad en micro-textura epidérmica, octanaje fotométrico 32-bit float HDR</textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- MODULE 3: NEGATIVE PROMPT INJECTOR -->
+            <div class="negative-box">
+                <div class="negative-header">
+                    <div class="negative-title">
+                        <span>⛔</span> MODULE 3: BLOQUEADOR NEGATIVO MASTER APEX
+                    </div>
+                    <span class="negative-lock-tag">LOCKED PENALTY BLOCK ACTIVE</span>
+                </div>
+
+                <div class="negative-static" id="master-negative-static">
+                    explicit gore, graphic violence, extra fingers, plastic skin, 3d render, CGI, cartoon, child, underage, watermark, low quality, distorted anatomy, blurry, oversaturated, anime, illustration, bad hands, missing limbs
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Términos Negativos Adicionales (Personalizados por el Director)</label>
+                    <input type="text" id="custom-negative" value="overexposed lighting, neon glow, modern plastic, lens flare, bright sunshine" oninput="saveAndRender()">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: CALCULATOR, OUTPUT & HISTORY -->
+        <div class="sidebar">
+
+            <!-- MODULE 4: 8K TILING & HARDWARE CALCULATOR -->
+            <div class="glass-panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <span>🧮</span> MODULE 4: CALCULADORA 8K TILING & NVIDIA BLACKWELL
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Resolución Objetivo Master</label>
+                    <select id="calc-res" onchange="calculateTiling()">
+                        <option value="7680x4320">8K UHD (7680 x 4320 px) - Aspecto 16:9 Cinema</option>
+                        <option value="8192x4320">8K DCI (8192 x 4320 px) - Anamórfico DCI</option>
+                        <option value="3840x2160">4K UHD (3840 x 2160 px) - Estándar Broadcast</option>
+                        <option value="15360x8640">16K Master IMAX (15360 x 8640 px)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Tamaño de Tile Individual</label>
+                    <select id="calc-tile-size" onchange="calculateTiling()">
+                        <option value="512">512 x 512 px (Recomendado APEX)</option>
+                        <option value="768">768 x 768 px (Alta VRAM)</option>
+                        <option value="1024">1024 x 1024 px (NVIDIA Blackwell Native)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Denoising Strength (Fuerza de Mosaico)</label>
+                    <div class="range-container">
+                        <input type="range" id="calc-denoise" min="0.10" max="0.50" step="0.01" value="0.25" oninput="calculateTiling()">
+                        <span id="calc-denoise-val" class="form-label-val" style="font-family:var(--font-mono); font-size:0.8rem;">0.25</span>
+                    </div>
+                    <span style="font-size:0.68rem; color:var(--text-muted);">Rango óptimo APEX sin costuras: 0.20 - 0.30</span>
+                </div>
+
+                <div class="form-group" style="flex-direction:row; justify-content:space-between; align-items:center;">
+                    <label class="form-label" style="margin:0;">ControlNet Tile Enabled</label>
+                    <label class="switch">
+                        <input type="checkbox" id="calc-controlnet" checked onchange="calculateTiling()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <!-- CALCULATOR RESULTS GRID -->
+                <div class="calc-grid">
+                    <div class="calc-card">
+                        <div class="calc-value" id="calc-grid-layout">15 x 9</div>
+                        <div class="calc-label">Grid Tiling (Cols x Filas)</div>
+                    </div>
+                    <div class="calc-card">
+                        <div class="calc-value" id="calc-total-tiles">135 Tiles</div>
+                        <div class="calc-label">Total Baldosas Generadas</div>
+                    </div>
+                    <div class="calc-card">
+                        <div class="calc-value" id="calc-vram" style="color:var(--cyan-accent);">14.2 GB</div>
+                        <div class="calc-label">VRAM Requerida (FP4/FP8)</div>
+                    </div>
+                    <div class="calc-card">
+                        <div class="calc-value" id="calc-time" style="color:var(--green-glow);">3.4s</div>
+                        <div class="calc-label">Inferencia B200 / GB200</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 5: ONE-CLICK CLIPBOARD & EXPORT PREVIEW -->
+            <div class="glass-panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <span>👁️</span> MODULE 5: PREVIEW & EXPORTACIÓN CLIPBOARD
+                    </div>
+                </div>
+
+                <div class="output-box" id="output-box-container">
+                    <div class="output-label">
+                        <span>MASTER PROMPT 6D GENERADO</span>
+                        <span id="prompt-char-count" style="font-size:0.7rem; color:var(--text-muted);">0 CARACTERES</span>
+                    </div>
+
+                    <div class="output-text" id="final-prompt-preview">Generando prompt...</div>
+
+                    <button class="btn-shimmer" onclick="copyMasterPrompt()">
+                        <span>📋</span> COPIAR MASTER PROMPT 6D
+                    </button>
+
+                    <div class="btn-group-grid">
+                        <button class="btn-secondary" onclick="copyNegativePrompt()">
+                            ⛔ Copiar Negativo
+                        </button>
+                        <button class="btn-secondary" onclick="copyFullPipelineJSON()">
+                            💾 Copiar JSON Config
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SESSION HISTORY & PRESETS -->
+                <div class="form-group" style="margin-top:0.5rem;">
+                    <div class="panel-title" style="font-size:0.8rem; margin-bottom:0.5rem;">
+                        <span>📜</span> HISTORIAL DE SESIÓN (LOCALSTORAGE)
+                    </div>
+
+                    <div class="history-list" id="history-container">
+                        <!-- Filled dynamically -->
+                    </div>
+
+                    <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+                        <button class="btn-secondary" style="flex:1;" onclick="exportSessionToFile()">Exportar Sesión (.json)</button>
+                        <button class="btn-secondary" style="flex:1;" onclick="triggerImportSession()">Importar Sesión</button>
+                        <input type="file" id="import-file-input" style="display:none;" accept=".json" onchange="importSessionFromFile(event)">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container"></div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>CÓDICE APEX 2026 &copy; PRODUCCIÓN CINEMATOGRÁFICA DE TERROR MEDIANTE IA</div>
+        <div>
+            MOTOR: <span class="footer-specs">VANILLA JS OFFLINE-FIRST</span> | ARQUITECTURA: <span class="footer-specs">MONOLÍTICA 0-DEP</span>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT ENGINE (MODULE 1 - 5 + LOCALSTORAGE) -->
+    <script>
+        /**
+         * CÓDICE APEX 2026 - Master Engine
+         * Offline-first, Zero-dependency vanilla JS implementation
+         */
+
+        // LEXICAL SHIELD REPLACEMENT MAP (Forbidden / Gore -> APEX Metaphorical Terms)
+        const LEXICAL_SAFETY_MAP = [
+            { pattern: /\bblood\b/gi, replacement: "viscous dark crimson oil" },
+            { pattern: /\bsangre\b/gi, replacement: "óleo denso carmesí oscuro" },
+            { pattern: /\bgore\b/gi, replacement: "visceral organic texture" },
+            { pattern: /\bcorpse\b/gi, replacement: "petrified mineralized humanoid form" },
+            { pattern: /\bcadáver\b/gi, replacement: "figura humanoide mineralizada petrificada" },
+            { pattern: /\bwound\b/gi, replacement: "lacquered anatomical fissure" },
+            { pattern: /\bherida\b/gi, replacement: "fisura anatómica laqueada" },
+            { pattern: /\bmutilated\b/gi, replacement: "fractured porcelain anatomy" },
+            { pattern: /\bmutilado\b/gi, replacement: "anatomía de porcelana fracturada" },
+            { pattern: /\bviscera\b/gi, replacement: "layered organic sinewy strata" },
+            { pattern: /\bvísceras\b/gi, replacement: "estratos orgánicos fibrosos superpuestos" },
+            { pattern: /\bdead body\b/gi, replacement: "dermo-skeleton structure in stasis" },
+            { pattern: /\bcuerpo muerto\b/gi, replacement: "estructura dermo-esquelética en estasis" },
+            { pattern: /\bkilling\b/gi, replacement: "kinetic biological dissolution" },
+            { pattern: /\basesinato\b/gi, replacement: "disolución biológica kinética" }
+        ];
+
+        const MASTER_NEGATIVE_STRICT = "explicit gore, graphic violence, extra fingers, plastic skin, 3d render, CGI, cartoon, child, underage, watermark, low quality, distorted anatomy, blurry, oversaturated, anime, illustration, bad hands, missing limbs";
+
+        // MASTER APEX DEFAULT PRESET
+        const APEX_DEFAULTS = {
+            subject: "Anomalía humanoide anciana en contorsión postural extrema, figura cadavérica tallada por necrosis",
+            epidermis: "epidermis translúcida de tono porcelana gélida revelando venas cianóticas de baja profundidad",
+            eyes: "escleróticas hiper-pigmentadas en azabache con cataratas de cuarzo lechoso",
+            sensor: "Phase One IQ4 150MP digital back, formato medio de resolución extrema",
+            lens: "Leica Noctilux-M 50mm f/0.95 ASPH, micro-contraste orgánico y compresión focal sobria",
+            grain: "grano fino fotosensible Kodak Vision3 500T 5219 con ruido analógico orgánico",
+            lighting: "Regla de Filópono: luz clave cenital rasante creando sombras penumbrosas profundas y claroscuro dramático",
+            haze: 65,
+            sss: 85,
+            framing: "plano medio corto en ángulo holandés (Dutch Angle) sutil de 12 grados, composición desbalanceada",
+            motion: "sensación de avance lento en dolly creeping in con ligera aberración esférica de borde",
+            crimsonHex: "#6b1111",
+            palette: "Paleta cromática dominada por cian gélido desaturado (#1a2830) con focalización de Aislamiento Carmesí (#6b1111)",
+            tech: "Subsurface scattering SSS de alto nivel en micro-poros epiteliales, renderizado octánico foto-realista Octane Render, 8K RAW uncompressed master batch, aberración cromática foveal imperceptible en bordes exteriores, hiper-fidelidad en micro-textura epidérmica, octanaje fotométrico 32-bit float HDR",
+            customNegative: "overexposed lighting, neon glow, modern plastic, lens flare, bright sunshine",
+            shieldActive: true,
+            calcRes: "7680x4320",
+            calcTileSize: "512",
+            calcDenoise: "0.25",
+            calcControlNet: true
+        };
+
+        let currentActiveState = { ...APEX_DEFAULTS };
+        let sessionHistory = [];
+
+        // INITIALIZATION ON DOM READY
+        document.addEventListener('DOMContentLoaded', function() {
+            initPassiveEventListeners();
+            loadStateFromLocalStorage();
+            calculateTiling();
+            updatePromptGeneration();
+            renderHistoryUI();
+        });
+
+        // PASSIVE EVENT LISTENERS FOR TABLET/MOBILE EFFICIENCY ON SET
+        function initPassiveEventListeners() {
+            const touchElements = document.querySelectorAll('input, select, button, textarea');
+            touchElements.forEach(el => {
+                el.addEventListener('touchstart', function() {}, { passive: true });
+                el.addEventListener('touchmove', function() {}, { passive: true });
+            });
+        }
+
+        // SYNC COLOR PICKER & HEX FIELD
+        function syncCrimsonColor() {
+            const picker = document.getElementById('dim5-crimson-picker');
+            const hex = document.getElementById('dim5-crimson-hex');
+            hex.value = picker.value;
+        }
+
+        function syncCrimsonHex() {
+            const picker = document.getElementById('dim5-crimson-picker');
+            const hex = document.getElementById('dim5-crimson-hex');
+            if (/^#[0-9A-F]{6}$/i.test(hex.value)) {
+                picker.value = hex.value;
+            }
+        }
+
+        // CAPTURE ALL FORM INPUTS INTO STATE
+        function captureCurrentFormState() {
+            const hazeVal = document.getElementById('dim3-haze').value;
+            const sssVal = document.getElementById('dim3-sss').value;
+
+            document.getElementById('dim3-haze-val').textContent = hazeVal + '%';
+            document.getElementById('dim3-sss-val').textContent = sssVal + '%';
+
+            currentActiveState = {
+                subject: document.getElementById('dim1-subject').value.trim(),
+                epidermis: document.getElementById('dim1-epidermis').value,
+                eyes: document.getElementById('dim1-eyes').value.trim(),
+                sensor: document.getElementById('dim2-sensor').value,
+                lens: document.getElementById('dim2-lens').value,
+                grain: document.getElementById('dim2-grain').value,
+                lighting: document.getElementById('dim3-lighting').value,
+                haze: hazeVal,
+                sss: sssVal,
+                framing: document.getElementById('dim4-framing').value,
+                motion: document.getElementById('dim4-motion').value,
+                crimsonHex: document.getElementById('dim5-crimson-hex').value,
+                palette: document.getElementById('dim5-palette').value,
+                tech: document.getElementById('dim6-tech').value.trim(),
+                customNegative: document.getElementById('custom-negative').value.trim(),
+                shieldActive: document.getElementById('shield-toggle').checked,
+                calcRes: document.getElementById('calc-res').value,
+                calcTileSize: document.getElementById('calc-tile-size').value,
+                calcDenoise: document.getElementById('calc-denoise').value,
+                calcControlNet: document.getElementById('calc-controlnet').checked
+            };
+
+            return currentActiveState;
+        }
+
+        // MODULE 1 & 2 ENGINE: GENERATE MASTER PROMPT WITH LEXICAL SHIELD FILTER
+        function updatePromptGeneration() {
+            const state = captureCurrentFormState();
+
+            // Construct Raw 6D Prompt
+            let rawPrompt = `[1D SUJETO]: ${state.subject}. Detalles epidérmicos: ${state.epidermis}. Rasgos oculares: ${state.eyes}. ` +
+                            `[2D ÓPTICA]: Capturado con ${state.sensor}, lente ${state.lens}, texturizado con ${state.grain}. ` +
+                            `[3D ILUMINACIÓN]: ${state.lighting}, niebla volumétrica ambiental al ${state.haze}%, dispersión subsuperficial SSS de piel al ${state.sss}%. ` +
+                            `[4D ENCUADRE]: ${state.framing}, dinámica de movimiento: ${state.motion}. ` +
+                            `[5D COLOR]: Aislamiento Carmesí (${state.crimsonHex}), ${state.palette}. ` +
+                            `[6D CALIDAD TÉCNICA]: ${state.tech}.`;
+
+            let finalPrompt = rawPrompt;
+            let replacementsCount = 0;
+
+            // Apply Module 2: Lexical Shield if enabled
+            if (state.shieldActive) {
+                LEXICAL_SAFETY_MAP.forEach(rule => {
+                    const matches = finalPrompt.match(rule.pattern);
+                    if (matches) {
+                        replacementsCount += matches.length;
+                        finalPrompt = finalPrompt.replace(rule.pattern, rule.replacement);
+                    }
+                });
+            }
+
+            // Update Shield Stats UI
+            const shieldBadge = document.getElementById('shield-stat-badge');
+            if (state.shieldActive) {
+                shieldBadge.textContent = `${replacementsCount} Reemplazo(s) Léxico(s) Activo(s)`;
+                shieldBadge.style.color = "var(--cyan-accent)";
+                shieldBadge.style.borderColor = "rgba(0, 240, 255, 0.3)";
+            } else {
+                shieldBadge.textContent = "ESCUDO LÉXICO DESACTIVADO";
+                shieldBadge.style.color = "var(--crimson-accent)";
+                shieldBadge.style.borderColor = "rgba(255, 42, 42, 0.3)";
+            }
+
+            // Render Final Output
+            const previewEl = document.getElementById('final-prompt-preview');
+            previewEl.textContent = finalPrompt;
+
+            const charCountEl = document.getElementById('prompt-char-count');
+            charCountEl.textContent = `${finalPrompt.length} CARACTERES`;
+
+            // Persist state to localStorage key required: h8k_last_subject and full params
+            saveStateToLocalStorage(finalPrompt);
+        }
+
+        function saveAndRender() {
+            updatePromptGeneration();
+        }
+
+        // RESET TO APEX DEFAULTS
+        function resetToApexDefaults() {
+            applyStateToUI(APEX_DEFAULTS);
+            updatePromptGeneration();
+            calculateTiling();
+            showToast("Presets de CÓDICE APEX 2026 restaurados correctamente");
+        }
+
+        function applyStateToUI(state) {
+            document.getElementById('dim1-subject').value = state.subject || APEX_DEFAULTS.subject;
+            document.getElementById('dim1-epidermis').value = state.epidermis || APEX_DEFAULTS.epidermis;
+            document.getElementById('dim1-eyes').value = state.eyes || APEX_DEFAULTS.eyes;
+            document.getElementById('dim2-sensor').value = state.sensor || APEX_DEFAULTS.sensor;
+            document.getElementById('dim2-lens').value = state.lens || APEX_DEFAULTS.lens;
+            document.getElementById('dim2-grain').value = state.grain || APEX_DEFAULTS.grain;
+            document.getElementById('dim3-lighting').value = state.lighting || APEX_DEFAULTS.lighting;
+            document.getElementById('dim3-haze').value = state.haze !== undefined ? state.haze : APEX_DEFAULTS.haze;
+            document.getElementById('dim3-sss').value = state.sss !== undefined ? state.sss : APEX_DEFAULTS.sss;
+            document.getElementById('dim4-framing').value = state.framing || APEX_DEFAULTS.framing;
+            document.getElementById('dim4-motion').value = state.motion || APEX_DEFAULTS.motion;
+            document.getElementById('dim5-crimson-hex').value = state.crimsonHex || APEX_DEFAULTS.crimsonHex;
+            document.getElementById('dim5-crimson-picker').value = state.crimsonHex || APEX_DEFAULTS.crimsonHex;
+            document.getElementById('dim5-palette').value = state.palette || APEX_DEFAULTS.palette;
+            document.getElementById('dim6-tech').value = state.tech || APEX_DEFAULTS.tech;
+            document.getElementById('custom-negative').value = state.customNegative || APEX_DEFAULTS.customNegative;
+            document.getElementById('shield-toggle').checked = state.shieldActive !== undefined ? state.shieldActive : APEX_DEFAULTS.shieldActive;
+            document.getElementById('calc-res').value = state.calcRes || APEX_DEFAULTS.calcRes;
+            document.getElementById('calc-tile-size').value = state.calcTileSize || APEX_DEFAULTS.calcTileSize;
+            document.getElementById('calc-denoise').value = state.calcDenoise || APEX_DEFAULTS.calcDenoise;
+            document.getElementById('calc-controlnet').checked = state.calcControlNet !== undefined ? state.calcControlNet : APEX_DEFAULTS.calcControlNet;
+        }
+
+        // MODULE 4: 8K TILING & NVIDIA BLACKWELL HARDWARE CALCULATOR
+        function calculateTiling() {
+            const resVal = document.getElementById('calc-res').value;
+            const tileSize = parseInt(document.getElementById('calc-tile-size').value, 10);
+            const denoiseVal = parseFloat(document.getElementById('calc-denoise').value);
+            const controlnet = document.getElementById('calc-controlnet').checked;
+
+            document.getElementById('calc-denoise-val').textContent = denoiseVal.toFixed(2);
+
+            const [width, height] = resVal.split('x').map(n => parseInt(n, 10));
+
+            // Tile grid layout calculations with overlapping margin (15% overlap)
+            const overlapRatio = 0.85;
+            const effectiveTile = tileSize * overlapRatio;
+
+            const cols = Math.ceil(width / effectiveTile);
+            const rows = Math.ceil(height / effectiveTile);
+            const totalTiles = cols * rows;
+
+            // VRAM calculation for FP4 / FP8 on NVIDIA Blackwell B200 / GB200 architecture
+            // Base model + ControlNet tile + tile tensor buffer
+            let baseVramGb = 8.5; // FP4 quantized model base
+            if (!controlnet) baseVramGb = 6.2;
+
+            const tileSizeMultiplier = (tileSize / 512) * (tileSize / 512);
+            const estimatedVRAM = (baseVramGb + (0.045 * totalTiles * tileSizeMultiplier)).toFixed(1);
+
+            // Inference speed benchmarking for NVIDIA Blackwell (TFLOPS Tensor Cores FP4)
+            // Average 0.025 sec per tile in FP4/FP8 on B200 GPU
+            const secondsPerTile = controlnet ? 0.028 : 0.019;
+            const totalExecutionTime = (totalTiles * secondsPerTile * (1 + (denoiseVal * 0.5))).toFixed(2);
+
+            // Update UI Displays
+            document.getElementById('calc-grid-layout').textContent = `${cols} x ${rows}`;
+            document.getElementById('calc-total-tiles').textContent = `${totalTiles} Tiles`;
+            document.getElementById('calc-vram').textContent = `${estimatedVRAM} GB`;
+            document.getElementById('calc-time').textContent = `${totalExecutionTime}s`;
+        }
+
+        // MODULE 5: CLIPBOARD OPERATIONS WITH VISUAL PULSE FEEDBACK
+        function triggerPulseFeedback() {
+            const box = document.getElementById('output-box-container');
+            box.classList.remove('copy-pulse');
+            void box.offsetWidth; // Force reflow
+            box.classList.add('copy-pulse');
+        }
+
+        function copyMasterPrompt() {
+            const promptText = document.getElementById('final-prompt-preview').textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                triggerPulseFeedback();
+                showToast("📋 Master Prompt 6D copiado al portapapeles con éxito");
+                addToSessionHistory(promptText);
+            }).catch(err => {
+                showToast("⚠️ Error al acceder al portapapeles: " + err);
+            });
+        }
+
+        function copyNegativePrompt() {
+            const customNeg = document.getElementById('custom-negative').value.trim();
+            const fullNegative = customNeg ? `${MASTER_NEGATIVE_STRICT}, ${customNeg}` : MASTER_NEGATIVE_STRICT;
+
+            navigator.clipboard.writeText(fullNegative).then(() => {
+                triggerPulseFeedback();
+                showToast("⛔ Bloqueador Negativo APEX copiado al portapapeles");
+            });
+        }
+
+        function copyFullPipelineJSON() {
+            const state = captureCurrentFormState();
+            const promptText = document.getElementById('final-prompt-preview').textContent;
+            const customNeg = state.customNegative;
+
+            const pipelinePayload = {
+                generator: "CÓDICE APEX 2026 MASTER ENGINE",
+                timestamp: new Date().toISOString(),
+                masterPrompt6D: promptText,
+                negativePrompt: customNeg ? `${MASTER_NEGATIVE_STRICT}, ${customNeg}` : MASTER_NEGATIVE_STRICT,
+                parameters: state
+            };
+
+            const jsonStr = JSON.stringify(pipelinePayload, null, 2);
+            navigator.clipboard.writeText(jsonStr).then(() => {
+                triggerPulseFeedback();
+                showToast("💾 Configuración de Pipeline APEX JSON copiada");
+            });
+        }
+
+        // LOCALSTORAGE STATE MANAGEMENT & SESSION HISTORY
+        function saveStateToLocalStorage(currentGeneratedPrompt) {
+            try {
+                const state = captureCurrentFormState();
+                // Mandatory key requirement: h8k_last_subject
+                localStorage.setItem('h8k_last_subject', state.subject);
+                localStorage.setItem('apex_2026_state', JSON.stringify(state));
+                localStorage.setItem('apex_2026_last_prompt', currentGeneratedPrompt);
+            } catch (e) {
+                console.warn('LocalStorage unavailable or quota exceeded:', e);
+            }
+        }
+
+        function loadStateFromLocalStorage() {
+            try {
+                const savedState = localStorage.getItem('apex_2026_state');
+                const lastSubject = localStorage.getItem('h8k_last_subject');
+
+                if (savedState) {
+                    const parsed = JSON.parse(savedState);
+                    if (lastSubject) parsed.subject = lastSubject;
+                    currentActiveState = parsed;
+                    applyStateToUI(parsed);
+                }
+
+                const savedHistory = localStorage.getItem('apex_2026_history');
+                if (savedHistory) {
+                    sessionHistory = JSON.parse(savedHistory);
+                }
+            } catch (e) {
+                console.warn('Error loading state from localStorage:', e);
+            }
+        }
+
+        function addToSessionHistory(promptText) {
+            const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const item = {
+                id: Date.now(),
+                subject: currentActiveState.subject || "Anomalía APEX",
+                time: timeStr,
+                prompt: promptText,
+                state: { ...currentActiveState }
+            };
+
+            sessionHistory.unshift(item);
+            if (sessionHistory.length > 10) sessionHistory.pop();
+
+            try {
+                localStorage.setItem('apex_2026_history', JSON.stringify(sessionHistory));
+            } catch (e) {}
+
+            renderHistoryUI();
+        }
+
+        function renderHistoryUI() {
+            const container = document.getElementById('history-container');
+            container.innerHTML = '';
+
+            if (sessionHistory.length === 0) {
+                container.innerHTML = '<div style="font-size:0.75rem; color:var(--text-muted); text-align:center; padding:0.5rem;">Sin historial registrado en esta sesión</div>';
+                return;
+            }
+
+            sessionHistory.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'history-item';
+                div.onclick = () => restoreHistoryItem(item.id);
+                div.innerHTML = `
+                    <div class="history-title">${escapeHtml(item.subject)}</div>
+                    <div class="history-time">${item.time}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function restoreHistoryItem(id) {
+            const item = sessionHistory.find(x => x.id === id);
+            if (item && item.state) {
+                applyStateToUI(item.state);
+                updatePromptGeneration();
+                calculateTiling();
+                showToast(`📜 Sesión restaurada: "${item.subject.substring(0, 20)}..."`);
+            }
+        }
+
+        function exportSessionToFile() {
+            const payload = {
+                app: "CÓDICE APEX 2026",
+                version: "1.0.0-PROD",
+                exportDate: new Date().toISOString(),
+                lastState: currentActiveState,
+                history: sessionHistory
+            };
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(payload, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `apex_session_${Date.now()}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast("📁 Sesión exportada correctamente a archivo JSON");
+        }
+
+        function triggerImportSession() {
+            document.getElementById('import-file-input').click();
+        }
+
+        function importSessionFromFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (parsed.lastState) {
+                        applyStateToUI(parsed.lastState);
+                    }
+                    if (parsed.history && Array.isArray(parsed.history)) {
+                        sessionHistory = parsed.history;
+                        localStorage.setItem('apex_2026_history', JSON.stringify(sessionHistory));
+                        renderHistoryUI();
+                    }
+                    updatePromptGeneration();
+                    calculateTiling();
+                    showToast("📂 Sesión importada y cargada con éxito");
+                } catch (err) {
+                    showToast("⚠️ Error al importar archivo JSON inválido");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // UTILITY: TOAST NOTIFICATIONS
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<span>⚡</span> <span>${escapeHtml(message)}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                toast.style.transition = 'all 0.3s ease-in';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
